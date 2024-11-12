@@ -18,9 +18,9 @@ const DetailPage = () => {
 
   // Check if likeed the movie or not 
   const checkLike = () => {
-    for (let a of mDetail) {
-      for (let b of likeArray) {
-        if (a.imdbID == b.imdbID) {
+    for (let i of mDetail) {
+      for (let j of likeArray) {
+        if (i.imdbID == j.imdbID) {
           return setlike(true)
         }
       }

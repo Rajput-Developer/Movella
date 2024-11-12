@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import fetchData from '../../../Function'
 import Hero from '../../HeroSection/Hero';
-const CatMovies = ({ title }) => {
+import { useSelector } from 'react-redux';
+const CatMovies = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const MoviesName = useSelector(state => state.name.name);
 
-  async function ActionMovies(title) {
+  async function Movies(title) {
     try {
       const funCalling = await fetchData(title);
+      if (funCalling == undefined) {
+        setError('Movies not found')
+        setLoading(false)
+        setMovies([]);
+        return;
+      }
       setMovies(funCalling);
       setLoading(false)
     } catch (error) {
@@ -18,7 +26,7 @@ const CatMovies = ({ title }) => {
     }
   }
   useEffect(() => {
-    ActionMovies(title);
+    Movies(MoviesName);
   }, [])
 
 
@@ -30,13 +38,10 @@ const CatMovies = ({ title }) => {
             <img src="../../assets/loading/loading.gif" alt="" />
           </div>
         ) : (
-
-
-
           <div className="app">
             <div className="search">
               <input type="text" placeholder='Enter Movie Name' value={search} onChange={(e) => setSearch(e.target.value)} />
-              <i className="fa-solid fa-magnifying-glass" onClick={() => ActionMovies(search)}></i>
+              <i className="fa-solid fa-magnifying-glass" onClick={() => Movies(search)}></i>
             </div>
             {
               movies.length > 0 ?
@@ -53,7 +58,7 @@ const CatMovies = ({ title }) => {
                 // Else Part
                 (
                   <div className="empty">
-                    <h2>No Movie Found {error} </h2>
+                    <h2>{error} </h2>
                   </div>
                 )
             }

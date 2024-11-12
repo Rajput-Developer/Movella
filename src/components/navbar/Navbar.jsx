@@ -23,10 +23,10 @@ const Navbar = () => {
                   Catageories
                 </a>
                 <ul className="dropdown-menu">
-                  <li><Link className="dropdown-item" to='/action-movies'>Action Movies</Link></li>
-                  <li><Link className="dropdown-item" to='/bollywood-movies'>Bollywood Movies</Link></li>
+                  <li><Link className="dropdown-item" to='/catageory/action-movies'>Action Movies</Link></li>
+                  <li><Link className="dropdown-item" to='/catageory/bollywood-movies'>Bollywood Movies</Link></li>
                   <li><hr className="dropdown-divider" /></li>
-                  <li><Link className="dropdown-item" to='/hollywood-movies'>Hollywood Movies</Link></li>
+                  <li><Link className="dropdown-item" to='/catageory/hollywood-movies'>Hollywood Movies</Link></li>
                 </ul>
               </li>
               <li className="nav-item">
