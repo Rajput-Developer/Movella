@@ -6,6 +6,7 @@ import Home from './components/Home/Home.jsx'
 import { sentralStore, presistor } from './Store/store.js'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
+const Search = lazy(() => import('./components/search/Search.jsx'));
 // import CatMovies from './components/MoviesCat/CatMoviesService/CatMovies.jsx'
 const CatMovies = lazy(() => import('./components/MoviesCat/CatMoviesService/CatMovies.jsx'))
 const About = lazy(() => import('./components/About/About.jsx'));
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: '/search/:name',
+        element: <Home />
       },
       {
         path: '/about',
