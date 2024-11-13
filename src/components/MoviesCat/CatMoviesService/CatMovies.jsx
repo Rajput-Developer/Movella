@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import fetchData from '../../../Function'
 import Hero from '../../HeroSection/Hero';
-import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 const CatMovies = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const MoviesName = useSelector(state => state.name.name);
+  const params = useParams();
+  console.log('params', params.name.split('-')[0])
+  const movieName = params.name.split('-')[0]
 
   async function Movies(title) {
     try {
@@ -26,7 +28,7 @@ const CatMovies = () => {
     }
   }
   useEffect(() => {
-    Movies(MoviesName);
+    Movies(movieName);
   }, [])
 
 

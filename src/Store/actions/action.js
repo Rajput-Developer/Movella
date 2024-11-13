@@ -15,12 +15,3 @@ export const addLike = (like) => {
         })
     }
 }
-
-export const catname = (name)=>{
-    return (dispatch)=>{
-        dispatch({
-            type:'name',
-            payload:name
-        })
-    }
-}
