@@ -8,42 +8,62 @@ import { action } from '../../Store/combineAction';
 // component code 
 const DetailPage = () => {
   const dispatch = useDispatch();
-  // All the state Declaration
+  // Select the array's from the redux store
   const Mdetail = useSelector(state => state.detail.MovieDetailArray);
-  const likeArray = useSelector(state => state.like.likeArray);
+  const like_Array = useSelector(state => state.like.likeArray);
+  const bookmark_Array = useSelector(state => state.save.bookmarkArray);
+
   const mDetail = Mdetail.flat(Infinity);
+  // All the state Declaration
   const [bookmarks, setBookmarks] = useState(false);
   const [like, setlike] = useState(false);
   const [movie, setmovie] = useState([]);
 
   // Check if likeed the movie or not 
   const checkLike = () => {
-    for (let i of mDetail) {
-      for (let j of likeArray) {
-        if (i.imdbID == j.imdbID) {
-          return setlike(true)
+    if (!like) {
+      console.log('inside checkLike')
+      for (let i of mDetail) {
+        for (let j of like_Array) {
+          if (i.imdbID == j.imdbID) {
+            setlike(true);
+          }
         }
       }
     }
   }
-  // Fetch the movie about name
-  useEffect(() => {
-    setmovie(mDetail)
-    checkLike();
-  }, [])
+  // check if bookmark or not
+  const checkBookmark = () => {
+    if (!bookmarks) {
+      for (let i of mDetail) {
+        for (let j of bookmark_Array) {
+          if (i.imdbID == j.imdbID) {
+            setBookmarks(true);
+          }
+        }
+      }
+    }
+  }
 
   // ToogleLikes
   function toogleLike(m) {
-    setlike(prevLike => !prevLike);
-    dispatch(action.addLike(m))
-
+    setlike(prevState => !prevState);
+    like ? dispatch(action.dislikeAction(m)) : dispatch(action.addLike(m))
+    console.log('like =>', like)
   }
 
   // ToogleBookmark
-  function toogleBookmark() {
+  function toogleBookmark(m) {
     setBookmarks(prevBookmark => !prevBookmark);
+    bookmarks ? dispatch(action.unSave(m)) : dispatch(action.bookmarkAction(m))
   }
 
+  // Fetch the movie about name
+  useEffect(() => {
+    checkLike();
+    checkBookmark();
+    setmovie(mDetail)
+  }, [])
   return (
     <>
       {
@@ -74,7 +94,7 @@ const DetailPage = () => {
                       <span>Like</span>
                     </div>
                     <div className="detail-icon d-flex flex-column align-items-center gap-2">
-                      {bookmarks === true ? <i onClick={() => toogleBookmark()} className="fa-solid fa-bookmark"></i> : <i onClick={() => toogleBookmark()} className="fa-regular fa-bookmark"></i>}
+                      {bookmarks === true ? <i onClick={() => toogleBookmark(m)} className="fa-solid fa-bookmark"></i> : <i onClick={() => toogleBookmark(m)} className="fa-regular fa-bookmark"></i>}
                       <span>Save</span>
                     </div>
                   </div>

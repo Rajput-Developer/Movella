@@ -15,3 +15,30 @@ export const addLike = (like) => {
         })
     }
 }
+
+export const bookmarkAction = (movie) => {
+    return (dispatch) => {
+        dispatch({
+            type: 'bookmarked',
+            payload: movie
+        })
+    }
+}
+
+export const dislikeAction = (movie)=>{
+    return (dispatch)=>{
+        dispatch({
+            type:'dislike',
+            payload:movie,
+        })
+    }
+}
+
+export const unSave = (movie)=>{
+    return (dispatch)=>{
+        dispatch({
+            type:'unSave',
+            payload:movie
+        })
+    }
+}

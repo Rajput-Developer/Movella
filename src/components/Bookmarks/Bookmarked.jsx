@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 import Hero from '../HeroSection/Hero';
-
-
-export default function Wishlist() {
-  const like_array = useSelector((state) => state.like.likeArray)
-  const newArray = like_array.flat(Infinity);
+export default function Bookmarked() {
+  const bookmarked_Array = useSelector(state => state.save.bookmarkArray);
   const [loading, setLoading] = useState(true);
   // loading Gif showing
   setTimeout(() => {
@@ -21,18 +18,18 @@ export default function Wishlist() {
         ) : (
           <div className='container justify-content-start'>
             {
-              newArray.length > 0 ? (
+              bookmarked_Array.length > 0 ? (
                 <>
 
                   {
-                    newArray.map((m, index) => (
+                    bookmarked_Array.map((m, index) => (
                       <Hero key={m.imdbID || index} Movies={m} />
                     ))
                   }
 
                 </>
               ) : (
-                <div className="container"><h2 className='my-3 text-center'>No Like Movies</h2></div>
+                <div className="container"><h2 className='my-3 text-center'>No Saved Movies</h2></div>
               )
             }
           </div>

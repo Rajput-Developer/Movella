@@ -6,12 +6,11 @@ import Home from './components/Home/Home.jsx'
 import { sentralStore, presistor } from './Store/store.js'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
-const Search = lazy(() => import('./components/search/Search.jsx'));
-// import CatMovies from './components/MoviesCat/CatMoviesService/CatMovies.jsx'
 const CatMovies = lazy(() => import('./components/MoviesCat/CatMoviesService/CatMovies.jsx'))
 const About = lazy(() => import('./components/About/About.jsx'));
 const DetailPage = lazy(() => import('./components/DetailPage/DetailPage.jsx'))
 const Wishlist = lazy(() => import('./components/Wishlist/Wishlist.jsx'))
+const Bookmarked = lazy(()=> import('./components/Bookmarks/Bookmarked.jsx'))
 
 // Defining the Routes
 const router = createBrowserRouter([
@@ -38,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/like',
         element: <Suspense><Wishlist /></Suspense>
+      },
+      {
+        path:'/bookmarks-movies',
+        element:<Suspense><Bookmarked /></Suspense>
       },
       {
         path: '/catageory/:name',
