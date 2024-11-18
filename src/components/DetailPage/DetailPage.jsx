@@ -32,6 +32,7 @@ const DetailPage = () => {
       }
     }
   }
+
   // check if bookmark or not
   const checkBookmark = () => {
     if (!bookmarks) {
@@ -49,7 +50,6 @@ const DetailPage = () => {
   function toogleLike(m) {
     setlike(prevState => !prevState);
     like ? dispatch(action.dislikeAction(m)) : dispatch(action.addLike(m))
-    console.log('like =>', like)
   }
 
   // ToogleBookmark
@@ -90,6 +90,7 @@ const DetailPage = () => {
                   <p className='mb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, magnam consectetur incidunt commodi eveniet laudantium impedit unde modi deleniti! Sit aut doloremque facilis ea perferendis omnis consequatur ipsum possimus itaque.</p>
                   <div className="detail-icon-main d-flex gap-4">
                     <div className="detail-icon d-flex flex-column align-items-center  gap-2">
+                      {/* Toogle like and bookmark */}
                       {like === true ? <i onClick={() => toogleLike(m)} className="fa-solid fa-heart"></i> : <i onClick={() => toogleLike(m)} className="fa-regular fa-heart"></i>}
                       <span>Like</span>
                     </div>
