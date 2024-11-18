@@ -2,10 +2,10 @@ import { lazy, StrictMode, Suspense } from 'react'
 import App from './App.jsx'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './components/Home/Home.jsx'
 import { sentralStore, presistor } from './Store/store.js'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
+import Home from './components/Home/Home.jsx'
 const CatMovies = lazy(() => import('./components/MoviesCat/CatMoviesService/CatMovies.jsx'))
 const About = lazy(() => import('./components/About/About.jsx'));
 const DetailPage = lazy(() => import('./components/DetailPage/DetailPage.jsx'))
