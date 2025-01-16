@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import { sentralStore, presistor } from './Store/store.js'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
-import { ToastContainer } from 'react-toastify';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -15,7 +14,6 @@ createRoot(document.getElementById('root')).render(
             <App />
           </PersistGate>
         </Provider>
-      <ToastContainer />
     </BrowserRouter>
   </StrictMode>
 )
