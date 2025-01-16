@@ -10,7 +10,7 @@ const CatMovies = lazy(() => import('./components/MoviesCat/CatMoviesService/Cat
 const About = lazy(() => import('./components/About/About.jsx'));
 const DetailPage = lazy(() => import('./components/DetailPage/DetailPage.jsx'))
 const Wishlist = lazy(() => import('./components/Wishlist/Wishlist.jsx'))
-const Bookmarked = lazy(()=> import('./components/Bookmarks/Bookmarked.jsx'))
+const Bookmarked = lazy(() => import('./components/Bookmarks/Bookmarked.jsx'))
 
 // Defining the Routes
 const router = createBrowserRouter([
@@ -39,8 +39,8 @@ const router = createBrowserRouter([
         element: <Suspense><Wishlist /></Suspense>
       },
       {
-        path:'/bookmarks-movies',
-        element:<Suspense><Bookmarked /></Suspense>
+        path: '/bookmarks-movies',
+        element: <Suspense><Bookmarked /></Suspense>
       },
       {
         path: '/catageory/:name',
