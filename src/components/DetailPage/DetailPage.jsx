@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import Button from '../Buttons/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { action } from '../../Store/combineAction';
+import { addLike } from '../../Store/actions/action';
 
 
 // component code 
@@ -18,9 +19,9 @@ const DetailPage = () => {
   const [bookmarks, setBookmarks] = useState(false);
   const [like, setlike] = useState(false);
   const [movie, setmovie] = useState([]);
-
   // Check if likeed the movie or not 
   const checkLike = () => {
+    console.log('component render inside checklike')
     if (!like) {
       console.log('inside checkLike')
       for (let i of mDetail) {
@@ -33,8 +34,10 @@ const DetailPage = () => {
     }
   }
 
-  // check if bookmark or not
+  // // check if bookmark or not
   const checkBookmark = () => {
+    console.log('component render inside checkBookmark')
+
     if (!bookmarks) {
       for (let i of mDetail) {
         for (let j of bookmark_Array) {
@@ -47,15 +50,17 @@ const DetailPage = () => {
   }
 
   // ToogleLikes
-  function toogleLike(m) {
+  const toogleLike = (m) => {
     setlike(prevState => !prevState);
     like ? dispatch(action.dislikeAction(m)) : dispatch(action.addLike(m))
+    console.log('toggleLike')
   }
 
   // ToogleBookmark
-  function toogleBookmark(m) {
+  const toogleBookmark = (m) => {
     setBookmarks(prevBookmark => !prevBookmark);
     bookmarks ? dispatch(action.unSave(m)) : dispatch(action.bookmarkAction(m))
+    console.log('toggleLike')
   }
 
   // Fetch the movie about name
@@ -63,7 +68,7 @@ const DetailPage = () => {
     checkLike();
     checkBookmark();
     setmovie(mDetail)
-  }, [])
+  }, [like, bookmarks])
   return (
     <>
       {

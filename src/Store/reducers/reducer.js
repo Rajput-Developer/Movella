@@ -11,6 +11,8 @@ const bookmarkState = {
 
 const reducer = (state = initialState, action) => {
   // Check if the movie is already exist or not
+  console.log('like reducer')
+
   let exist = state.likeArray.some(
     (movie) => movie.imdbID === action.payload.imdbID
   );
@@ -48,6 +50,7 @@ const reducer = (state = initialState, action) => {
 
 // bookmarkReducer
 const bookmarkReducer = (state = bookmarkState, action) => {
+  console.log('bookmark reducer')
   // If action is bookmark or save
   switch (action.type) {
     case "bookmarked":
